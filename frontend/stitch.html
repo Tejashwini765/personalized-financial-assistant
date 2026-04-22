@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Budget Planner | WeFinance AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#f7f9ff",
+              "secondary-fixed-dim": "#68dba9",
+              "secondary": "#006c4a",
+              "tertiary-fixed": "#ffe088",
+              "on-error": "#ffffff",
+              "primary-fixed-dim": "#b0c9e8",
+              "error": "#ba1a1a",
+              "tertiary-fixed-dim": "#e9c349",
+              "surface-variant": "#cfe5ff",
+              "surface-bright": "#f7f9ff",
+              "on-secondary-container": "#00714e",
+              "outline-variant": "#c3c6ce",
+              "primary-container": "#102a43",
+              "on-primary-fixed": "#011d35",
+              "tertiary": "#735c00",
+              "inverse-on-surface": "#e8f1ff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#574500",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#cca830",
+              "surface-container-highest": "#cfe5ff",
+              "on-secondary-fixed": "#002114",
+              "on-background": "#001d33",
+              "surface-dim": "#c1ddfc",
+              "inverse-surface": "#15324b",
+              "surface-container-high": "#d9eaff",
+              "on-primary-container": "#7a92b0",
+              "on-primary": "#ffffff",
+              "surface-tint": "#49607c",
+              "on-tertiary-fixed": "#241a00",
+              "outline": "#74777e",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#005137",
+              "on-error-container": "#93000a",
+              "surface-container": "#e3efff",
+              "on-primary-fixed-variant": "#314863",
+              "on-tertiary-container": "#4f3e00",
+              "on-surface-variant": "#43474d",
+              "primary": "#00152a",
+              "inverse-primary": "#b0c9e8",
+              "secondary-fixed": "#85f8c4",
+              "surface-container-low": "#edf4ff",
+              "primary-fixed": "#d1e4ff",
+              "on-surface": "#001d33",
+              "secondary-container": "#82f5c1",
+              "error-container": "#ffdad6",
+              "background": "#f7f9ff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #00152a 0%, #102a43 100%);
+        }
+        .ai-gradient {
+            background: linear-gradient(135deg, #e3efff 0%, #ffffff 100%);
+            border: 1px solid rgba(16, 42, 67, 0.05);
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f7f9ff;
+        }
+    </style>
+</head>
+<body class="text-on-background selection:bg-secondary-container">
+<!-- Sidebar -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 p-6 space-y-8 bg-[#edf4ff] dark:bg-[#102a43] w-64 border-r-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 signature-gradient rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<h2 class="text-lg font-extrabold tracking-tight text-[#00152a] dark:text-white leading-tight">WeFinance AI</h2>
+<p class="text-[0.6rem] uppercase tracking-widest text-on-surface-variant font-bold">AI Financial Assistant</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-[#43474d] dark:text-[#c3c6ce] hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-200 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#43474d] dark:text-[#c3c6ce] hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-200 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="text-sm font-medium">Upload</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#43474d] dark:text-[#c3c6ce] hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-200 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-[#00152a] text-[#00152a] dark:text-white rounded-lg shadow-sm font-semibold transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-sm font-medium">Insights</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-outline-variant/10 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 text-[#43474d] dark:text-[#c3c6ce] text-sm font-medium">
+<span class="material-symbols-outlined text-sm">help_outline</span>
+                Help
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-error text-sm font-medium">
+<span class="material-symbols-outlined text-sm">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 min-h-screen">
+<!-- Top Header -->
+<header class="flex justify-between items-center px-8 w-full sticky top-0 z-40 backdrop-blur-md bg-opacity-70 bg-[#f7f9ff] h-16">
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant text-sm font-medium">Assistant / Budget Planner</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-low rounded-full px-4 py-1.5 border border-outline-variant/10">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-on-surface-variant/50" placeholder="Ask WeFinance AI..." type="text"/>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2stKCPYEDg3qKaoMl8Jii8BeDAXaVvz-jzO8yKKWWR5M-4bRulxZeGFaSaO8mj65g5OyFIWfVP6XntIe_cUrDHEgAlCcIfnSrNASyebib-VfcHrBBy4HWqJXkl0mEAd5E9n86_9HcMd1QYM3Qjo0PSms4bdSAVVoy20f3BipRd2ws8JGBgSdbAPkxvvzym_0BMnzdX3-SosrotwPI3_fkhXsR7aAlviQuSKmc-X_zfZhgN4ryHtYoRF6ocRz2sPSdXYjCurzMOd4"/>
+</div>
+</div>
+</header>
+<div class="px-8 pt-10 max-w-6xl mx-auto space-y-10">
+<!-- Title and Key Metrics -->
+<section>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight text-primary">Budget Planner</h1>
+<p class="text-on-surface-variant mt-1">Smart tracking of your monthly financial goals</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/10 min-w-[160px]">
+<p class="text-[0.65rem] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Monthly Budget</p>
+<p class="text-xl font-extrabold text-primary">₹1,20,000</p>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-outline-variant/10 min-w-[160px]">
+<p class="text-[0.65rem] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Total Spending</p>
+<p class="text-xl font-extrabold text-primary">₹84,232</p>
+</div>
+<div class="bg-secondary/10 p-4 rounded-xl min-w-[160px] border border-secondary/20">
+<p class="text-[0.65rem] text-secondary font-bold uppercase tracking-wider mb-1">Remaining</p>
+<p class="text-xl font-extrabold text-secondary">₹35,768</p>
+</div>
+</div>
+</div>
+<!-- Visual Status -->
+<div class="bg-white rounded-2xl p-8 shadow-sm border border-outline-variant/5 flex flex-col md:flex-row items-center gap-12">
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90">
+<circle cx="96" cy="96" fill="none" r="80" stroke="#f0f4f8" stroke-width="12"></circle>
+<circle cx="96" cy="96" fill="none" r="80" stroke="#00152a" stroke-dasharray="502.65" stroke-dashoffset="150.8" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-4xl font-extrabold text-primary">70%</span>
+<span class="text-[0.6rem] text-on-surface-variant uppercase font-bold tracking-tight">Utilized</span>
+</div>
+</div>
+<div class="flex-1 space-y-6 w-full">
+<div class="flex justify-between items-center">
+<h2 class="text-xl font-bold text-primary">Overall Budget Status</h2>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded-full">Healthy</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                            You've used 70% of your total budget for October. Based on your current spending velocity, you are projected to finish the month with ₹12,400 in savings.
+                        </p>
+<div class="flex gap-8">
+<div>
+<p class="text-xs text-on-surface-variant font-bold mb-1">DAILY AVERAGE</p>
+<p class="text-xl font-bold text-primary">₹2,800</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-bold mb-1">PROJECTED LEFT</p>
+<p class="text-xl font-bold text-primary">₹14,200</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories and AI Panel -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Simplified Categories -->
+<div class="md:col-span-7 space-y-6">
+<h3 class="text-lg font-bold text-primary px-1">Top Categories</h3>
+<div class="bg-white p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">restaurant</span>
+<span class="font-bold text-primary">Food</span>
+</div>
+<span class="text-xs font-bold text-error">90% Used</span>
+</div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-on-surface-variant">Spent: <strong class="text-primary">₹32,400</strong></span>
+<span class="text-on-surface-variant">Budget: ₹36,000</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[90%]"></div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">commute</span>
+<span class="font-bold text-primary">Travel</span>
+</div>
+<span class="text-xs font-bold text-secondary">55% Used</span>
+</div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-on-surface-variant">Spent: <strong class="text-primary">₹11,000</strong></span>
+<span class="text-on-surface-variant">Budget: ₹20,000</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[55%]"></div>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+<span class="font-bold text-primary">Shopping</span>
+</div>
+<span class="text-xs font-bold text-secondary">42% Used</span>
+</div>
+<div class="flex justify-between text-sm mb-2">
+<span class="text-on-surface-variant">Spent: <strong class="text-primary">₹12,600</strong></span>
+<span class="text-on-surface-variant">Budget: ₹30,000</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[42%]"></div>
+</div>
+</div>
+</div>
+<!-- AI Suggestions Panel -->
+<div class="md:col-span-5">
+<section class="ai-gradient rounded-2xl p-6 h-full border border-primary/5">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="text-lg font-extrabold text-primary">AI Suggestions</h3>
+</div>
+<div class="space-y-5">
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-lg">warning</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">
+                                    You are close to exceeding your budget in <strong class="text-primary">Food</strong>. You've used 90% with 6 days remaining.
+                                </p>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-lg">lightbulb</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">
+                                    Consider <strong class="text-primary">reducing travel spending</strong> this week to maintain your overall savings goal of ₹12k.
+                                </p>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-lg bg-primary/5 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-lg">savings</span>
+</div>
+<p class="text-sm text-on-surface leading-snug">
+                                    Your <strong class="text-secondary">Shopping</strong> spend is lower than usual. You can reallocate ₹5,000 to cover Food expenses.
+                                </p>
+</div>
+</div>
+<button class="w-full mt-8 signature-gradient text-white py-3 rounded-lg font-bold text-sm shadow-md">
+                            Apply Recommendations
+                        </button>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Contextual FAB -->
+<button class="fixed bottom-8 right-8 signature-gradient w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl z-40 hover:scale-105 transition-transform group">
+<span class="material-symbols-outlined text-2xl">add</span>
+<span class="absolute right-full mr-4 bg-primary px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Adjust Budget</span>
+</button>
+</body></html>

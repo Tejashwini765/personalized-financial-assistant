@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Machine Learning model
+finance_model.pkl
+
+# Database files
+*.db
+
+# Node modules
+node_modules/
+
+# Build files
+dist/
+dist-ssr/
+
+# Logs
+*.log
+
+# System files
+.DS_Store

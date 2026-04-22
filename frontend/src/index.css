@@ -1,0 +1,7 @@
+.signature-gradient {
+  background: linear-gradient(135deg, #00152a 0%, #102a43 100%);
+}
+.ai-gradient {
+  background: linear-gradient(135deg, #e3efff 0%, #ffffff 100%);
+  border: 1px solid rgba(16, 42, 67, 0.05);
+}
